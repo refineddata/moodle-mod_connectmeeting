@@ -1,4 +1,4 @@
-Installing your Connect2Moodle plugin:
+Installing your Connect2Moodle plugin!:
 ======================================
 
     1. Download Connect2Moodle plugin package:

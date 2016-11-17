@@ -921,7 +921,7 @@ function connectmeeting_create_display( $connectmeeting ){
     $connectmeetingid = empty($element[5]) ? 0 : $element[5];
     $grouping = '';
 
-    if (!$PAGE->user_allowed_editing()) {
+    if (!(!empty($PAGE->context) && $PAGE->user_allowed_editing())) {
         if (!empty($startdate) and time() < strtotime($startdate)) return;
         if (!empty($enddate) and time() > strtotime($enddate)) return;
     } else $nomouseover = false;
@@ -1091,7 +1091,7 @@ function connectmeeting_create_display( $connectmeeting ){
         }
         //$overtext .= $strtime . $strtele;
 
-        if ($PAGE->user_allowed_editing()) {
+        if (!empty($PAGE->context) && $PAGE->user_allowed_editing()) {
             if( $course = $DB->get_record( 'course', array( 'id' => $connectmeeting->course ) ) ){
                 $editcontext = context_course::instance($course->id);
             }else{

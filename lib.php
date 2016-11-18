@@ -686,7 +686,7 @@ function connectmeeting_launch($acurl, $courseid = 1, $regrade = false, $cm = 0)
         $entry->grade = 100;
         connectmeeting_gradebook_update($connectmeeting, $entry);
     } elseif (!isset($entry->grade) OR $entry->grade < 100) {
-        connectmeeting_grade_entry($USER->id, $connectmeeting, $entry);
+        //connectmeeting_grade_entry($USER->id, $connectmeeting, $entry);
     }
     
     
@@ -718,9 +718,9 @@ function connectmeeting_launch($acurl, $courseid = 1, $regrade = false, $cm = 0)
     	$action = '';
     	
 
-    			$scores = connect_sco_scores($connectmeeting->id, $USER->id, 'meeting');
-    			$description = "Minutes: $scores->minutes";
-    			$description.= ", Connect ID: $entry->connectmeetingid";
+    			//$scores = connect_sco_scores($connectmeeting->id, $USER->id, 'meeting');
+    			//$description = "Minutes: $scores->minutes";
+    			$description = ", Connect ID: $entry->connectmeetingid";
     			$action = 'connect_meeting';
     			
     	

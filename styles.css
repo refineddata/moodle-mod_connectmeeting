@@ -4,6 +4,22 @@
 
 .connect-course-aftertext-left {
     float: left;
-    padding-left: 10px;
+    padding-left: 30px;
     text-align: left;
+}
+
+#meeting_icon .clock {
+    /*position: absolute;*/
+    margin-top: 80px;
+    margin-left: -80px;
+}
+#meeting_icon_md .clock {
+    /*position: absolute;*/
+    margin-top: 36px;
+    margin-left: -64px;
+}
+#meeting_icon_sm .clock {
+    /*position: absolute;*/
+    margin-top: 18px;
+    margin-left: -34px;
 }

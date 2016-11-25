@@ -798,6 +798,10 @@ function connectmeeting_update_from_adobe( &$connectmeeting ){
         if(isset($sco->pphone))$connectmeeting->ac_pphone = $sco->pphone;
         if(isset($sco->id))$connectmeeting->ac_id=$sco->id;
         if(isset($sco->views))$connectmeeting->ac_views = $sco->views;
+        if(isset($sco->start))$connectmeeting->start = $sco->start;
+        if(isset($sco->start) && isset($sco->end)){
+            $connectmeeting->duration = $sco->end - $sco->start;
+        }
         $DB->update_record( 'connectmeeting', $connectmeeting );
     }
 }
@@ -1091,7 +1095,7 @@ function connectmeeting_create_display( $connectmeeting ){
         }
         //$overtext .= $strtime . $strtele;
 
-        if (!empty($PAGE->context) && $PAGE->user_allowed_editing()) {
+        if (!empty($PAGE->context->id) && $PAGE->user_allowed_editing() && $USER->editing) {
             if( $course = $DB->get_record( 'course', array( 'id' => $connectmeeting->course ) ) ){
                 $editcontext = context_course::instance($course->id);
             }else{

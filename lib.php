@@ -1121,9 +1121,11 @@ function connectmeeting_create_display( $connectmeeting ){
                         //$overtext .= '<img src="' . $CFG->wwwroot . '/filter/connect/images/attendee.gif" border="0" align="middle"> ' . get_string('viewattendees', 'filter_connect') . '</a>';
                         $overtext .= "<img src='" . $OUTPUT->pix_url('/t/groups') . "' class='iconsmall' title='" . get_string('viewattendees', 'filter_connect') ."' />". "</a>";
                     }
-                    $overtext .= '<a href="' . $CFG->wwwroot . '/mod/connectmeeting/past_sessions.php?acurl=' . $connectmeeting->url . '&course=' . $connectmeeting->course . '">';
-                    //$overtext .= '<br /><img src="' . $CFG->wwwroot . '/mod/connectmeeting/images/attendee.gif" border="0" align="middle"> ' . get_string('viewpastsessions', 'connectmeeting') . '</a>';
-                    $overtext .= "<img src='" . $OUTPUT->pix_url('/t/calendar') . "' class='iconsmall' title='" . get_string('viewpastsessions', 'connectmeeting') ."' />". "</a>";
+                    if (!empty(connect_check_vp_license_active())) {
+                        $overtext .= '<a href="' . $CFG->wwwroot . '/mod/connectmeeting/past_sessions.php?acurl=' . $connectmeeting->url . '&course=' . $connectmeeting->course . '">';
+                        //$overtext .= '<br /><img src="' . $CFG->wwwroot . '/mod/connectmeeting/images/attendee.gif" border="0" align="middle"> ' . get_string('viewpastsessions', 'connectmeeting') . '</a>';
+                        $overtext .= "<img src='" . $OUTPUT->pix_url( '/t/calendar' ) . "' class='iconsmall' title='" . get_string( 'viewpastsessions', 'connectmeeting' ) . "' />" . "</a>";
+                    }
                 }
             }
         }

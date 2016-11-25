@@ -17,8 +17,8 @@ $PAGE->set_context( context_course::instance($course) );
 
 $button = $OUTPUT->single_button( new moodle_url( '/course/view.php', array( 'id' => $course ) ), get_string( 'backtocourse', 'filter_connect' ) );
 
-$PAGE->set_title( get_string( 'past_sessions_title', 'mod_connect' ) );
-$PAGE->set_heading( get_string( 'past_sessions_heading', 'mod_connect' ) );
+$PAGE->set_title( get_string( 'past_sessions_title', 'mod_connectmeeting' ) );
+$PAGE->set_heading( get_string( 'past_sessions_heading', 'mod_connectmeeting' ) );
 $PAGE->set_button( $button );
 
 echo $OUTPUT->header();

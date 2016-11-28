@@ -114,10 +114,16 @@ $string['detailgradingslide']      = 'Grading Options';
 $string['detailgradingslide_help'] = '<b>Simple Grading</b>: launching the activity = 100%.<br />
 <b>Adobe Grading</b>: pulls the number of slides viewed from Adobe Connect and calculates a grade percentage when thresholds are selected. If no thresholds are selected the number of slides viewed is stored as the grade.';
 
-$string['detailgradingmeeting']      = $string['detailgradingslide'];
+$string['detailgradingmeeting']      = $string['detailgrading'];
+$string['detailgradingmeetingnovp']      = $string['detailgrading'];
+
 $string['detailgradingmeeting_help'] = '<b>Simple Grading</b>: launching the activity = 100%.<br />
 <b>Adobe Grading</b>: pulls the number of minutes from Adobe Connect and calculates a grade percentage when thresholds are selected. If no thresholds are selected the number of minutes the user attended the meeting is stored as the grade.
 <br /><b>Vantage Point Interaction</b>: pulls the percentage of challenges from Vantage Point and calculates a grade percentage when thresholds are selected. If no thresholds are selected then the Vantage Point percentage is stored as the grade.';
+
+$string['detailgradingmeetingnovp_help'] = '<b>Simple Grading</b>: launching the activity = 100%.<br />
+<b>Adobe Grading</b>: pulls the number of minutes from Adobe Connect and calculates a grade percentage when thresholds are selected. If no thresholds are selected the number of minutes the user attended the meeting is stored as the grade.
+';
 
 $string['detailgradingcquiz']      = $string['detailgradingslide'];
 $string['detailgradingcquiz_help'] = '<b>Simple Grading</b>: launching the activity = 100%.<br />

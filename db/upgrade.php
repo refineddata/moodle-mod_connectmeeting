@@ -22,9 +22,9 @@
 
 function xmldb_connectmeeting_upgrade($oldversion) {
     global $CFG, $DB;
-
+    require_once($CFG->libdir.'/db/upgradelib.php'); // Core Upgrade-related functions
     $dbman = $DB->get_manager();
-
+    $result = true;
 
     // Moodle v2.2.0 release upgrade line
     // Put any upgrade step following this
@@ -44,7 +44,19 @@ function xmldb_connectmeeting_upgrade($oldversion) {
     // Moodle v2.6.0 release upgrade line.
     // Put any upgrade step following this.
 
-    return true;
+    if ($oldversion < 2016112900) {
+
+        // Define field aftertype to be added to reminders
+        $table = new xmldb_table('connectmeeting_entries');
+        $field = new xmldb_field('grade', XMLDB_TYPE_FLOAT, null, null, XMLDB_NOTNULL, null, 0 );
+
+        // Conditionally launch add field aftertype
+        if ($dbman->field_exists($table, $field)) {
+            $dbman->change_field_default($table, $field);
+        }
+    }
+
+    return $result;
 }
 
 

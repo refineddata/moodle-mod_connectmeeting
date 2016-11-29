@@ -379,7 +379,6 @@ function connectmeeting_cron_task() {
     echo '+++++ connectmeeting_cron'."\n";
     global $CFG, $DB;
     $now = time();
-
     if ($connectmeetings = $DB->get_records_sql("SELECT * FROM {$CFG->prefix}connectmeeting WHERE start > 0 AND (start + compdelay) < $now AND complete = 0")) {
         foreach ($connectmeetings as $connectmeeting) {
             connectmeeting_complete_meeting($connectmeeting);
@@ -687,6 +686,7 @@ function connectmeeting_launch($acurl, $courseid = 1, $regrade = false, $cm = 0)
         connectmeeting_gradebook_update($connectmeeting, $entry);
     } elseif (!isset($entry->grade) OR $entry->grade < 100) {
         //connectmeeting_grade_entry($USER->id, $connectmeeting, $entry);
+        $entry->grade = 0;
     }
     
     

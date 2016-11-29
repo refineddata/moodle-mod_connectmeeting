@@ -5,7 +5,7 @@
 ///  This fragment is called by admin/index.php
 /////////////////////////////////////////////////////////////////////////////////
 
-$plugin->version  = 2015120300;   // This module's version
+$plugin->version  = 2016112900;   // This module's version
 $plugin->requires = 2011070102;   // Requires this Moodle version
 $plugin->component = 'mod_connectmeeting';
 //$plugin->cron     = 600;          // Run Cron every 5 Minutes

@@ -76,7 +76,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
                 $formgroup = array();
                 $formgroup[] =& $mform->createElement('text', 'url', '', array('maxlength' => 255, 'size' => 48, 'class' => 'ignoredirty'));
                 $mform->setType('url', (!empty($CFG->formatstringstriptags)) ? PARAM_TEXT : PARAM_CLEAN);
-                if (!isset($_REQUEST['update'])) {
+                if (empty($_REQUEST['update'])) {
                     $formgroup[] =& $mform->createElement('button', 'browse', get_string('browse', 'connectmeeting'));
                     //if ($CFG->connect_update) {
                         $formgroup[] =& $mform->createElement('button', 'generate', get_string('generate', 'connectmeeting'));
@@ -84,8 +84,8 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
                 }
                 $mform->addElement('group', 'urlgrp', get_string('url', 'connectmeeting'), $formgroup, array(' '), false);
                 $mform->setDefault('url', $url);
-                if (!isset($_REQUEST['update'])) {
-                    $mform->addRule( 'urlgrp', null, 'required', null, 'client' );
+                if (empty($_REQUEST['update'])) {
+                    $mform->addRule( 'urlgrp', null, 'required' );
 
                     $mform->addGroupRule( 'urlgrp', array(
                         'url' => array(
@@ -93,7 +93,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
                         ),
                     ) );
                 }
-                if (isset($_REQUEST['update'])) {
+                if (!empty($_REQUEST['update'])) {
                     $mform->hardFreeze('urlgrp');
                 }
                 
@@ -427,7 +427,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
                     $mform->setDefault('urlgrp', $url);
 
                     //Make URL field uneditable if editing existing activity
-                    if (isset($_REQUEST['update'])) {
+                    if (!empty($_REQUEST['update'])) {
                         $element =& $mform->createElement('text', 'url', get_string('url', 'connectmeeting'));
                         $mform->setType('url', (!empty($CFG->formatstringstriptags)) ? PARAM_TEXT : PARAM_CLEAN);
                         $mform->insertElementBefore($element, 'urlgrp');
@@ -437,7 +437,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
                         $mform->removeElement('urlgrp', true);
                     }
 
-                    if ((isset($CFG->connect_update) && $CFG->connect_update) || !isset($_REQUEST['update'])) {
+                    if ((isset($CFG->connect_update) && $CFG->connect_update) || empty($_REQUEST['update'])) {
                         $mform->setDefault('name', $info->name);
                         $mform->setDefault('introeditor', array('text' => $info->desc));
                     }
@@ -466,7 +466,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
                     }
                 } else {
                     //Make URL field uneditable if editing existing activity
-                    if (isset($_REQUEST['update'])) {
+                    if (!empty($_REQUEST['update'])) {
 //                         $element =& $mform->createElement('text', 'urltmp', get_string('url', 'connect'));
 //                         $mform->insertElementBefore($element, 'urlgrp');
 //                         $mform->hardFreeze('urltmp');
@@ -520,7 +520,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
             }
 
             //if ($type == 'meeting' && (empty($url) || !isset($info) || (isset($info) && $info == 'no-data'))) {
-            if ((!isset($_REQUEST['update']))) {
+            if ((empty($_REQUEST['update']))) {
                 // Template
                 $tploptions = connect_get_templates();
                 $element =& $mform->createElement('select', 'template', get_string('template', 'connectmeeting'), $tploptions);
@@ -553,7 +553,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
 //                     $mform->disabledIf('moderator', 'telephony', 'ne', 'other');
 //                     $mform->disabledIf('participant', 'telephony', 'ne', 'other');
                 }
-            }elseif( isset($_REQUEST['update']) ){
+            }elseif( !empty($_REQUEST['update']) ){
                  $tploptions = connect_get_templates();
                 $element =& $mform->createElement('select', 'template_start', get_string('template', 'connectmeeting'), $tploptions);
                 if (isset($CFG->connect_icondisplay) AND $CFG->connect_icondisplay) {

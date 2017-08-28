@@ -431,6 +431,8 @@ function connectmeeting_complete_meeting($connectmeeting, $startdaterange = 0, $
 
             //Loop through each user
             foreach ($users as $user) {
+                if (\core_availability\info_module::is_user_visible($cm, $user->id) == false) continue;
+
                 //echo "user " . $user->id . "\n";
                 // skip them if they have a grade outside the range
                 if( !connectmeeting_grade_based_on_range( $user->id, $connectmeeting->id, $startdaterange, $enddaterange, $regrade ) ) continue;

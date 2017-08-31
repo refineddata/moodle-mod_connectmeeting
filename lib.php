@@ -390,6 +390,10 @@ function connectmeeting_cron_task() {
 }
 
 function connectmeeting_grade_based_on_range( $userid, $connectmeetingid, $startdaterange, $enddaterange, $regrade ){
+    $cm = get_coursemodule_from_instance('connectmeeting', $connectmeetingid);
+
+    if (\core_availability\info_module::is_user_visible($cm, $userid) == false) return false;
+
     if( function_exists( 'local_connect_grade_based_on_range' ) ){
         return local_connect_grade_based_on_range( $userid, $connectmeetingid, $startdaterange, $enddaterange, $regrade, 'connectmeeting' );
     }else{
@@ -431,8 +435,6 @@ function connectmeeting_complete_meeting($connectmeeting, $startdaterange = 0, $
 
             //Loop through each user
             foreach ($users as $user) {
-                if (\core_availability\info_module::is_user_visible($cm, $user->id) == false) continue;
-
                 //echo "user " . $user->id . "\n";
                 // skip them if they have a grade outside the range
                 if( !connectmeeting_grade_based_on_range( $user->id, $connectmeeting->id, $startdaterange, $enddaterange, $regrade ) ) continue;

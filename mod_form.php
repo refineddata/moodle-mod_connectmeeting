@@ -265,6 +265,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
         $mform->setDefault('detailgrading', $default);
         //$mform->setAdvanced('detailgrading', 'grade');
 
+        $mform->addElement('html', '<div id="regular-gradings">');
         $formgroup = array();
         $formgroup[] =& $mform->createElement('select', 'threshold[1]', '', $options);
         $mform->setDefault('threshold[1]', 0);
@@ -303,47 +304,49 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
         $mform->addElement('group', 'tg3', get_string("tgmeeting", 'connectmeeting') . ' 3', $formgroup, array(' '), false);
         $mform->addHelpButton('tg3', "tgmeeting", 'connectmeeting');
         //$mform->setAdvanced('tg3', 'grade');
+        $mform->addElement('html', '</div>');
 
         
-            $vpoptions = array();
-            $vpoptions[0] = get_string('none');
-            for ($i = 100; $i >= 1; $i -= 1) {
-                $vpoptions[$i] = $i . '%';
-            }
+        $vpoptions = array();
+        $vpoptions[0] = get_string('none');
+        for ($i = 100; $i >= 1; $i -= 1) {
+            $vpoptions[$i] = $i . '%';
+        }
 
-            $formgroup = array();
-            $formgroup[] =& $mform->createElement('select', 'vpthreshold[1]', '', $vpoptions);
-            $mform->setDefault('vpthreshold[1]', 0);
-            $mform->disabledIf('vpthreshold[1]', 'detailgrading', 'ne', 3);
-            $formgroup[] =& $mform->createElement('select', 'vpgrade[1]', '', $goptions);
-            $mform->setDefault('vpgrade[1]', 0);
-            $mform->disabledIf('vpgrade[1]', 'detailgrading', 'ne', 3);
-            $mform->addElement('group', 'tg1vp', get_string("tgmeetingvp", 'connectmeeting') . ' 1', $formgroup, array(' '), false);
-            $mform->addHelpButton('tg1vp', "tgmeetingvp", 'connectmeeting');
-            //$mform->setAdvanced('tg1', 'grade');
+        $mform->addElement('html', '<div id="vp-gradings">');
+        $formgroup = array();
+        $formgroup[] =& $mform->createElement('select', 'vpthreshold[1]', '', $vpoptions);
+        $mform->setDefault('vpthreshold[1]', 0);
+        $mform->disabledIf('vpthreshold[1]', 'detailgrading', 'ne', 3);
+        $formgroup[] =& $mform->createElement('select', 'vpgrade[1]', '', $goptions);
+        $mform->setDefault('vpgrade[1]', 0);
+        $mform->disabledIf('vpgrade[1]', 'detailgrading', 'ne', 3);
+        $mform->addElement('group', 'tg1vp', get_string("tgmeetingvp", 'connectmeeting') . ' 1', $formgroup, array(' '), false);
+        $mform->addHelpButton('tg1vp', "tgmeetingvp", 'connectmeeting');
+        //$mform->setAdvanced('tg1', 'grade');
 
-            $formgroup = array();
-            $formgroup[] =& $mform->createElement('select', 'vpthreshold[2]', '', $vpoptions);
-            $mform->setDefault('vpthreshold[2]', 0);
-            $mform->disabledIf('vpthreshold[2]', 'detailgrading', 'ne', 3);
-            $formgroup[] =& $mform->createElement('select', 'vpgrade[2]', '', $goptions);
-            $mform->setDefault('vpgrade[2]', 0);
-            $mform->disabledIf('vpgrade[2]', 'detailgrading', 'ne', 3);
-            $mform->addElement('group', 'tg2vp', get_string("tgmeetingvp", 'connectmeeting') . ' 2', $formgroup, array(' '), false);
-            $mform->addHelpButton('tg2vp', "tgmeetingvp", 'connectmeeting');
-            //$mform->setAdvanced('tg2', 'grade');
+        $formgroup = array();
+        $formgroup[] =& $mform->createElement('select', 'vpthreshold[2]', '', $vpoptions);
+        $mform->setDefault('vpthreshold[2]', 0);
+        $mform->disabledIf('vpthreshold[2]', 'detailgrading', 'ne', 3);
+        $formgroup[] =& $mform->createElement('select', 'vpgrade[2]', '', $goptions);
+        $mform->setDefault('vpgrade[2]', 0);
+        $mform->disabledIf('vpgrade[2]', 'detailgrading', 'ne', 3);
+        $mform->addElement('group', 'tg2vp', get_string("tgmeetingvp", 'connectmeeting') . ' 2', $formgroup, array(' '), false);
+        $mform->addHelpButton('tg2vp', "tgmeetingvp", 'connectmeeting');
+        //$mform->setAdvanced('tg2', 'grade');
 
-            $formgroup = array();
-            $formgroup[] =& $mform->createElement('select', 'vpthreshold[3]', '', $vpoptions);
-            $mform->setDefault('vpthreshold[3]', 0);
-            $mform->disabledIf('vpthreshold[3]', 'detailgrading', 'ne', 3);
-            $formgroup[] =& $mform->createElement('select', 'vpgrade[3]', '', $goptions);
-            $mform->setDefault('vpgrade[3]', 0);
-            $mform->disabledIf('vpgrade[3]', 'detailgrading', 'ne', 3);
-            $mform->addElement('group', 'tg3vp', get_string("tgmeetingvp", 'connectmeeting') . ' 3', $formgroup, array(' '), false);
-            $mform->addHelpButton('tg3vp', "tgmeetingvp", 'connectmeeting');
-            //$mform->setAdvanced('tg3', 'grade');
-        
+        $formgroup = array();
+        $formgroup[] =& $mform->createElement('select', 'vpthreshold[3]', '', $vpoptions);
+        $mform->setDefault('vpthreshold[3]', 0);
+        $mform->disabledIf('vpthreshold[3]', 'detailgrading', 'ne', 3);
+        $formgroup[] =& $mform->createElement('select', 'vpgrade[3]', '', $goptions);
+        $mform->setDefault('vpgrade[3]', 0);
+        $mform->disabledIf('vpgrade[3]', 'detailgrading', 'ne', 3);
+        $mform->addElement('group', 'tg3vp', get_string("tgmeetingvp", 'connectmeeting') . ' 3', $formgroup, array(' '), false);
+        $mform->addHelpButton('tg3vp', "tgmeetingvp", 'connectmeeting');
+        //$mform->setAdvanced('tg3', 'grade');
+        $mform->addElement('html', '</div>');
 //-------------------------------------------------------------------------------
        
             $mform->addElement('header', 'comphdr', get_string('comphdr', 'connectmeeting'));

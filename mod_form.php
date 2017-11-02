@@ -251,11 +251,13 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
         
         if (!empty($CFG->ft_server))
             $dgoptions += array(2 => get_string('fasttrack', 'connectmeeting'));
-        if (!empty(connect_check_vp_license_active())) {
+        $vp_license_active = connect_check_vp_license_active();
+        if (!empty($vp_license_active)) {
             $dgoptions += array( 3 => get_string( 'vantagepoint', 'connectmeeting' ) );
         }
         $mform->addElement('select', 'detailgrading', get_string("detailgradingmeeting", 'connectmeeting'), $dgoptions);
-        if (!empty(connect_check_vp_license_active())) {
+        $vp_license_active = connect_check_vp_license_active();
+        if (!empty($vp_license_active)) {
             $mform->addHelpButton( 'detailgrading', "detailgradingmeeting", 'connectmeeting' );
         } else {
             $mform->addHelpButton( 'detailgrading', "detailgradingmeetingnovp", 'connectmeeting' );

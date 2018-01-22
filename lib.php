@@ -1099,7 +1099,7 @@ function connectmeeting_create_display( $connectmeeting ){
         }
         //$overtext .= $strtime . $strtele;
 
-        if (!empty($PAGE->context->id) && $PAGE->user_allowed_editing() && !empty($USER->editing)) {
+        if (!empty($PAGE->context->id) && $PAGE->user_allowed_editing() && !empty($USER->editing) && empty(strstr($PAGE->url, 'launch')) ) {
             if( $course = $DB->get_record( 'course', array( 'id' => $connectmeeting->course ) ) ){
                 $editcontext = context_course::instance($course->id);
             }else{

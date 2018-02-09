@@ -52,7 +52,7 @@ function regrade_one($connect, $shh, $all = false) {
         echo 'Regrading ' . $connect->name . '<br/>';
     }
     
-        connect_complete_meeting($connect);
+        connectmeeting_complete_meeting($connect);
     
     rebuild_course_cache($connect->course);
 

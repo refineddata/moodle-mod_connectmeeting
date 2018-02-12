@@ -51,8 +51,9 @@ function regrade_one($connect, $shh, $all = false) {
     if (!$shh) {
         echo 'Regrading ' . $connect->name . '<br/>';
     }
-    
-        connectmeeting_complete_meeting($connect);
+    $startdaterange = $connect->start;
+    $enddaterange = $connect->start + $connect->compdelay + ( 60*60*2 );
+    connectmeeting_complete_meeting($connect, $startdaterange, $enddaterange);
     
     rebuild_course_cache($connect->course);
 

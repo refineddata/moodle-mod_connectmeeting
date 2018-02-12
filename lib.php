@@ -562,8 +562,10 @@ function connectmeeting_complete_meeting($connectmeeting, $startdaterange = 0, $
 
             rebuild_course_cache($connectmeeting->course);
             $DB->update_record('connectmeeting', $connectmeeting);
-        } 
-        connectmeeting_update_from_adobe( $connectmeeting );
+        }
+        if (!$regrade) {
+            connectmeeting_update_from_adobe($connectmeeting);
+        }
     }
 
     return;

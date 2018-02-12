@@ -48,11 +48,15 @@ die;
 function regrade_one($connect, $shh, $all = false) {
     global $CFG, $DB;
 
+    $startdaterange = $connect->start;
+    $enddaterange = $connect->start + $connect->compdelay + ( 60*60*2 );
+
+    if ($enddaterange < time()) return false;
+
     if (!$shh) {
         echo 'Regrading ' . $connect->name . '<br/>';
     }
-    $startdaterange = $connect->start;
-    $enddaterange = $connect->start + $connect->compdelay + ( 60*60*2 );
+
     connectmeeting_complete_meeting($connect, $startdaterange, $enddaterange);
     
     rebuild_course_cache($connect->course);

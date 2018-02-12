@@ -51,7 +51,7 @@ function regrade_one($connect, $shh, $all = false) {
     $startdaterange = $connect->start;
     $enddaterange = $connect->start + $connect->compdelay + ( 60*60*2 );
 
-    if ($enddaterange < time()) return false;
+    if ($enddaterange > time()) return false;
 
     if (!$shh) {
         echo 'Regrading ' . $connect->name . '<br/>';

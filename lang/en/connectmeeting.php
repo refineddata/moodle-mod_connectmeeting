@@ -380,3 +380,4 @@ $string['popup_height_hint'] = '<font size=\"1\">Height of the popup window laun
 
 $string['popup_width']      = 'Popup window width.';
 $string['popup_width_hint'] = '<font size=\"1\">Width of the popup window launched for an Adobe meeting/presentation.  Determines the default size of a popup window in pixels.</font>';
+$string['noconnectmeetings'] = 'There are no connect meetings';

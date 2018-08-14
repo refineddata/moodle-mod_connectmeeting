@@ -56,6 +56,18 @@ function xmldb_connectmeeting_upgrade($oldversion) {
         }
     }
 
+    if ($oldversion < 2018081300) {
+
+        // Define field aftertype to be added to reminders
+        $table = new xmldb_table('connectmeeting');
+        $field = new xmldb_field('credit', XMLDB_TYPE_INTEGER, '5', null, XMLDB_NOTNULL, null, '0');
+
+        // Conditionally launch add field aftertype
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+    }
+
     return $result;
 }
 

@@ -143,6 +143,9 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
 
         $this->standard_intro_elements(false, get_string('summary', 'connectmeeting'));
 
+        $mform->addElement('text', 'credit', get_string('credit', 'connectmeeting'), 'size="50"');
+        $mform->setType('credit', PARAM_TEXT );
+
 //-------------------------------------------------------------------------------
         
         	

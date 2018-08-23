@@ -238,7 +238,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
                 $mform->disabledIf('forceicon_filemanager', 'iconsize', 'ne', 'custom');
                 $mform->disabledIf('iconphone', 'iconsilent', 'checked');
                 //$mform->disabledIf('iconmouse', 'iconsilent', 'checked');
-                $mform->disabledIf('extrahtml', 'iconsilent', 'checked');
+                //$mform->disabledIf('extrahtml', 'iconsilent', 'checked');
             }
         
 

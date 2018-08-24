@@ -1107,16 +1107,30 @@ function connectmeeting_create_display( $connectmeeting ){
             }else{
                 $editcontext = context_system::instance();
             }
+
+            // for Moodle 3.3 onwards
+            if (method_exists($OUTPUT, 'image_url')){
+                $edit_icon = $OUTPUT->image_url('/t/edit');
+                $return_icon = $OUTPUT->image_url('/i/return');
+                $groups_icon = $OUTPUT->image_url('/t/groups');
+                $calendar_icon = $OUTPUT->image_url('/t/calendar');
+            } else {
+                $edit_icon = $OUTPUT->pix_url('/t/edit');
+                $return_icon = $OUTPUT->pix_url('/i/return');
+                $groups_icon = $OUTPUT->pix_url('/t/groups');
+                $calendar_icon = $OUTPUT->pix_url('/t/calendar');
+            }
+
             if (has_capability('filter/connect:editresource', $editcontext)) {
                 $overtext .= '<a href="' . $link . '&edit=' . $connectmeeting->ac_id . '&type=' . $connectmeeting->ac_type . '" target="'.$linktarget.'" >';
                 //$overtext .= '<img src="' . $CFG->wwwroot . '/mod/connectmeeting/images/adobe.gif" border="0" align="middle"> ';
                 //$overtext .= get_string('launch_edit', 'connectmeeting') . '</a><br/>';
-                $overtext .= "<img src='" . $OUTPUT->pix_url('/t/edit') . "' class='iconsmall' title='" . get_string('launch_edit', 'connectmeeting')  ."' />". "</a>";
+                $overtext .= "<img src='" . $edit_icon . "' class='iconsmall' title='" . get_string('launch_edit', 'connectmeeting')  ."' />". "</a>";
 
                 $overtext .= '<a href="#" id="connectmeeting-update-from-adobe" data-connectmeetingid="'.$connectmeeting->id.'">';
                 //$overtext .= '<img src="' . $CFG->wwwroot . '/mod/connectmeeting/images/adobe.gif" border="0" align="middle"> ';
                 //$overtext .= get_string('update_from_adobe', 'connectmeeting') . '</a><br/>';
-                $overtext .= "<img src='" . $OUTPUT->pix_url('/i/return') . "' class='iconsmall' title='" . get_string('update_from_adobe', 'connectmeeting')  ."' />". "</a>";
+                $overtext .= "<img src='" . $return_icon . "' class='iconsmall' title='" . get_string('update_from_adobe', 'connectmeeting')  ."' />". "</a>";
             }
 
             if ($connectmeeting->ac_type == 'meeting') {
@@ -1125,13 +1139,13 @@ function connectmeeting_create_display( $connectmeeting ){
                     if( file_exists( $CFG->dirroot.'/filter/connect/attendees.php' ) ){
                         $overtext .= '<a href="' . $CFG->wwwroot . '/filter/connect/attendees.php?acurl=' . $connectmeeting->url . '&course=' . $connectmeeting->course . '">';
                         //$overtext .= '<img src="' . $CFG->wwwroot . '/filter/connect/images/attendee.gif" border="0" align="middle"> ' . get_string('viewattendees', 'filter_connect') . '</a>';
-                        $overtext .= "<img src='" . $OUTPUT->pix_url('/t/groups') . "' class='iconsmall' title='" . get_string('viewattendees', 'filter_connect') ."' />". "</a>";
+                        $overtext .= "<img src='" . $groups_icon . "' class='iconsmall' title='" . get_string('viewattendees', 'filter_connect') ."' />". "</a>";
                     }
                     $vp_license_active = connect_check_vp_license_active();
                     if (!empty($vp_license_active)) {
                         $overtext .= '<a href="' . $CFG->wwwroot . '/mod/connectmeeting/past_sessions.php?acurl=' . $connectmeeting->url . '&course=' . $connectmeeting->course . '">';
                         //$overtext .= '<br /><img src="' . $CFG->wwwroot . '/mod/connectmeeting/images/attendee.gif" border="0" align="middle"> ' . get_string('viewpastsessions', 'connectmeeting') . '</a>';
-                        $overtext .= "<img src='" . $OUTPUT->pix_url( '/t/calendar' ) . "' class='iconsmall' title='" . get_string( 'viewpastsessions', 'connectmeeting' ) . "' />" . "</a>";
+                        $overtext .= "<img src='" . $calendar_icon . "' class='iconsmall' title='" . get_string( 'viewpastsessions', 'connectmeeting' ) . "' />" . "</a>";
                     }
                 }
             }

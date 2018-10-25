@@ -49,7 +49,7 @@ if (!$edit && !$archive && !$guest) {
 }
 
 if( $forceaddin ){
-	$url.= $forceaddin == 1 ? '?launcher=true' : '?launcher=false';	
+	$url.= $forceaddin == 1 ? '?launcher=true' : '?launcher=false&proto=false';
 }
 
 $launch_url = connect_get_launch_url($url, 'meeting', $edit, $archive, $guest, 'connectmeeting');

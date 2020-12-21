@@ -642,10 +642,14 @@ function connectmeeting_cm_info_dynamic($mod) {
 function connectmeeting_cm_info_view($mod) {
     global $CFG, $OUTPUT, $DB;
 
-    
-    
-        $str = '<span class="commands"><a class="editing_recurring" href="' . $CFG->wwwroot . '/mod/connectmeeting/recurring.php?id=' . $mod->instance . '" title="' . get_string('recurring', 'connectmeeting') . '"><img src="' . $OUTPUT->pix_url('i/calendar') . '" class="icon" alt="' . get_string('recurring', 'connectmeeting') . '" /></a></span>';
-        $mod->set_after_edit_icons($str);
+    if (method_exists($OUTPUT, 'image_url')){
+        $calendar_icon = $OUTPUT->image_url('/t/calendar');
+    } else {
+        $calendar_icon = $OUTPUT->pix_url('i/calendar');
+    }
+
+    $str = '<span class="commands"><a class="editing_recurring" href="' . $CFG->wwwroot . '/mod/connectmeeting/recurring.php?id=' . $mod->instance . '" title="' . get_string('recurring', 'connectmeeting') . '"><img src="' . $calendar_icon . '" class="icon" alt="' . get_string('recurring', 'connectmeeting') . '" /></a></span>';
+    $mod->set_after_edit_icons($str);
    
     return;
 }
@@ -828,7 +832,7 @@ function connectmeeting_translate_display($connectmeeting, $forviewpage = 0) {
 
         $start = ''; //TODO - get start and end from Restrict Access area
         $end = ''; 
-        $extrahtml = empty($connectmeeting->extrahtml) ? '' : $connectmeeting->extrahtml;
+        $extrahtml = empty($connectmeeting->extrahtml['text']) ? '' : $connectmeeting->extrahtml['text'];
 
         if( !isset( $connectmeeting->iconsize ) )$connectmeeting->iconsize = 'large';
         $options = $connectmeeting->iconsize . $flags . '~' . $start . '~' . $end . '~' . $extrahtml . '~' . $connectmeeting->forceicon . '~' . $connectmeeting->id;

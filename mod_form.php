@@ -222,7 +222,7 @@ class mod_connectmeeting_mod_form extends moodleform_mod {
                     $mform->setDefault('iconnorec', $default);
                     //$mform->setAdvanced('iconnorec', 'icon');
                
-                $mform->addElement('htmleditor', 'extrahtml', get_string('extrahtml', 'connectmeeting'), array('cols' => '64', 'rows' => '8'));
+                $mform->addElement('editor', 'extrahtml', get_string('extrahtml', 'connectmeeting'), array('cols' => '64', 'rows' => '8'));
                 //$mform->setAdvanced('extrahtml', 'icon');
 
                 $mform->addElement('filemanager', 'forceicon_filemanager', get_string('forceicon', 'connectmeeting'), null, $this->_fmoptions);

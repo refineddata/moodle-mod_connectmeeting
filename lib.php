@@ -1280,7 +1280,7 @@ function connectmeeting_grade_meeting($courseid, $url, $connectmeeting = null, $
             if ($grade == -1) {
                 return false; // scores not ready yet, return false so meeting won't be completed yet and will check again next cron
             } elseif ($grade == -2) {
-                return true; // vantage point couldn't find any grades, meeting will complete without it
+                continue; // vantage point couldn't find any grades, meeting will complete without it
             } elseif ($grade > 0) { // woo, we have a grade!!
                 if (!$entry = $DB->get_record('connectmeeting_entries', array('connectmeetingid' => $connectmeeting->id, 'userid' => $user->id))) {
                     $entry = new stdClass();

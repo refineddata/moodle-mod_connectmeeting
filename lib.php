@@ -429,7 +429,7 @@ function connectmeeting_complete_meeting($connectmeeting, $startdaterange = 0, $
                     require_once($CFG->dirroot . '/mod/certificate/lib.php');
                     require_once($CFG->libdir . '/pdflib.php');
                     $cmcert = get_coursemodule_from_instance('certificate', $certificate->id);
-                    $certctx = get_context_instance(CONTEXT_MODULE, $cmcert->id);
+                    $certctx = context_module::instance($cmcert->id);
                 }
             }
 

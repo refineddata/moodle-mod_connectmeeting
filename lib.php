@@ -1230,8 +1230,10 @@ function connectmeeting_mod_tzabbr() {
     return $dt->format('T');
 }
 
-function connectmeeting_grade_meeting($courseid, $url, $connectmeeting = null, $startdaterange, $enddaterange, $regrade) {
+function connectmeeting_grade_meeting($courseid, $url, $connectmeeting, $startdaterange, $enddaterange, $regrade) {
     global $CFG, $DB, $USER;
+
+    if(!isset($connectmeeting)) $connectmeeting = null;
 
     if (!$connectmeeting AND !$connectmeeting = $DB->get_record('connectmeeting', array('course' => $courseid, 'url' => $url))) return false;
 
